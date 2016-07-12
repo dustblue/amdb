@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rakesh.amdb.MainActivity">
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_search"
+        android:title="@string/action_search"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_add"
+        android:orderInCategory="200"
+        android:icon="@drawable/ic_add"
+        android:title="@string/action_add"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_sort"
+        android:orderInCategory="300"
+        android:icon="@drawable/ic_sort"
+        android:title="@string/action_sort"
+        app:showAsAction="ifRoom" />
+</menu>
