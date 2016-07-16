@@ -1,7 +1,9 @@
 package com.rakesh.amdb;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,9 +19,9 @@ public class Detailed extends AppCompatActivity {
         db = new DataBaseHandler(this);
         Bundle extras = getIntent().getExtras();
         String id = extras.getString("imdbid");
-        Movie m = db.getMovie(Integer.parseInt(id));
+        Movie m = db.getMovie(id);
 
-        ImageView poster = (ImageView) findViewById(R.id.poster);
+        ImageView poster = (ImageView) findViewById(R.id.imageView);
         Picasso.with(this)
                 .load(m.getPoster())
                 .placeholder(R.drawable.ic_default)
@@ -34,16 +36,23 @@ public class Detailed extends AppCompatActivity {
         year.setText(m.getYear());
 
         TextView plot = (TextView) findViewById(R.id.plot);
-        plot.setText(m.getTitle());
+        plot.setText(m.getPlot());
 
         TextView genre = (TextView) findViewById(R.id.genre);
-        genre.setText(m.getTitle());
+        genre.setText(m.getGenre());
 
         TextView director = (TextView) findViewById(R.id.director);
-        director.setText(m.getTitle());
+        director.setText("Directed by " + m.getDirector());
 
         TextView rating = (TextView) findViewById(R.id.rating);
-        rating.setText(m.getTitle());
+        rating.setText("IMDB Rating: " + m.getImdbRating());
+
+        FloatingActionButton fabx = (FloatingActionButton) findViewById(R.id.fabx);
+        fabx.setOnClickListener(view -> {
+            db.delMovie(m);
+            Intent k = new Intent(this, GridActivity.class);
+            startActivity(k);
+        });
     }
 
     @Override

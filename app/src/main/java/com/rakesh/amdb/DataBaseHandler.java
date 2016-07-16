@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +19,18 @@ public class DataBaseHandler extends SQLiteOpenHelper
 
     private static final String TABLE_MOVIES = "Movies";
 
-    private static final String KEY_IMDBID = "imdbid";
-    private static final String KEY_TITLE = "title";
-    private static final String KEY_TYPE = "type";
-    private static final String KEY_YEAR = "year";
-    private static final String KEY_GENRE = "genre";
-    private static final String KEY_PLOT = "plot";
-    private static final String KEY_DIRECTOR = "director";
-    private static final String KEY_IMDBRATING = "imdbrating";
-    private static final String KEY_RESPONSE = "response";
-    private static final String KEY_POSTER = "poster";
+    private static final String KEY_IMDBID = "imdbID";
+    private static final String KEY_TITLE = "Title";
+    private static final String KEY_TYPE = "Type";
+    private static final String KEY_YEAR = "Year";
+    private static final String KEY_GENRE = "Genre";
+    private static final String KEY_PLOT = "Plot";
+    private static final String KEY_DIRECTOR = "Director";
+    private static final String KEY_IMDBRATING = "imdbRating";
+    private static final String KEY_RESPONSE = "Response";
+    private static final String KEY_POSTER = "Poster";
 
-    Movie movie;
+    Movie movie = new Movie();
 
     public DataBaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -40,9 +41,9 @@ public class DataBaseHandler extends SQLiteOpenHelper
         String CREATE_MOVIES_TABLE = "CREATE TABLE " + TABLE_MOVIES + "("
                 + KEY_IMDBID + " TEXT PRIMARY KEY," + KEY_TITLE + " TEXT,"
                 + KEY_TYPE + " TEXT," + KEY_YEAR + " INTEGER,"
-                + KEY_GENRE + " TEXT," + KEY_PLOT + " TEXT"
-                + KEY_DIRECTOR + " TEXT" + KEY_IMDBRATING + " TEXT"
-                + KEY_RESPONSE + " TEXT" + KEY_POSTER + " TEXT" + ")";
+                + KEY_GENRE + " TEXT," + KEY_PLOT + " TEXT,"
+                + KEY_DIRECTOR + " TEXT," + KEY_IMDBRATING + " TEXT,"
+                + KEY_RESPONSE + " TEXT," + KEY_POSTER + " TEXT" + ")";
         db.execSQL(CREATE_MOVIES_TABLE);
     }
 
@@ -56,15 +57,15 @@ public class DataBaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_TYPE, movie.getType());
         values.put(KEY_IMDBID, movie.getImdbID());
         values.put(KEY_TITLE, movie.getTitle());
-        values.put(KEY_TYPE, movie.getType());
         values.put(KEY_YEAR, movie.getYear());
+        values.put(KEY_RESPONSE, movie.getResponse());
+        values.put(KEY_IMDBRATING, movie.getImdbRating());
+        values.put(KEY_DIRECTOR, movie.getDirector());
         values.put(KEY_GENRE, movie.getGenre());
         values.put(KEY_PLOT, movie.getPlot());
-        values.put(KEY_DIRECTOR, movie.getDirector());
-        values.put(KEY_IMDBRATING, movie.getImdbRating());
-        values.put(KEY_RESPONSE, movie.getResponse());
         values.put(KEY_POSTER, movie.getPoster());
 
         db.insert(TABLE_MOVIES, null, values);
@@ -76,15 +77,16 @@ public class DataBaseHandler extends SQLiteOpenHelper
          db.delete(TABLE_MOVIES, KEY_IMDBID + " = ?", new String[] { String.valueOf(movie.getImdbID()) });
      }
 
-    Movie getMovie(int id) {
+    Movie getMovie(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_MOVIES, new String[] { KEY_IMDBID,
                         KEY_TITLE, KEY_TYPE, KEY_YEAR, KEY_GENRE, KEY_PLOT,
                         KEY_DIRECTOR, KEY_IMDBRATING, KEY_RESPONSE, KEY_POSTER }, KEY_IMDBID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
+                new String[] { id }, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
+            Log.d("check", cursor.getString(1));
             movie.setImdbID(cursor.getString(0));
             movie.setTitle(cursor.getString(1));
             movie.setType(cursor.getString(2));
@@ -100,13 +102,13 @@ public class DataBaseHandler extends SQLiteOpenHelper
         return movie;
     }
 
-    public List<Movie> getAllMovies(Boolean sort) {
+    public List<Movie> getAllMovies() {
         List<Movie> movieList = new ArrayList<>();
         String selectQuery;
-        if (sort) {
+        if (true) {
             selectQuery = "SELECT  * FROM Movies ORDER BY title";
         } else {
-            selectQuery = "SELECT  * FROM Movies ORDER BY imdbrating";
+            selectQuery = "SELECT  * FROM Movies ORDER BY imdbRating";
         }
 
         SQLiteDatabase db = this.getWritableDatabase();

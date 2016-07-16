@@ -11,14 +11,14 @@ import android.widget.Toast;
 
 
 public class GridActivity extends AppCompatActivity {
+    final int numberOfTabs =2;
+    public boolean sort;
     Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     CharSequence titles[]={"Movies","Series"};
-    final int numberOfTabs =2;
     Intent m;
-    Boolean sort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class GridActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), titles, numberOfTabs, sort);
+        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), titles, numberOfTabs);
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
 
@@ -48,17 +48,19 @@ public class GridActivity extends AppCompatActivity {
         switch(item.getOrder()) {
             case 100 : {
                 Toast.makeText(GridActivity.this, "Yet to implement search", Toast.LENGTH_SHORT).show();
+                break;
             }
             case 200 : {
                 m = new Intent(this, MainActivity.class);
                 startActivity(m);
                 finish();
+                break;
             }
             case 300 : {
                 m = new Intent(this, GridActivity.class);
-                sort=!sort;
                 startActivity(m);
                 finish();
+                break;
             }
         }
         return super.onOptionsItemSelected(item);

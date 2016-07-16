@@ -11,8 +11,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,17 +29,17 @@ public class MoviesTab extends Fragment {
         View v = inflater.inflate(R.layout.tab_movies,container,false);
         db = new DataBaseHandler(getContext());
         moviesView = (GridView)v.findViewById(R.id.moviesView);
-        text = (TextView)v.findViewById(R.id.moviesDefaultTab);
+        text = (TextView)v.findViewById(R.id.moviesDefaultText);
 
-        movies = db.getAllMovies(sort);
+        movies = db.getAllMovies();
         for (Movie mv : movies) {
             if (mv.getType().equals("movie")) {
                 movie_data.add(mv);
             }
         }
 
-        if(movie_data == null) {
-            text.setText("Add Movies");
+        if(movie_data.size() == 0) {
+            text.setText(R.string.add_movies);
         } else {
             adapter = new MovieGridAdapter(getContext(), R.layout.grid_element, movie_data);
             moviesView.setAdapter(adapter);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,34 +20,44 @@ import rx.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity {
     DataBaseHandler db;
 
-    public interface MovieService {
-        @GET("?")
-        Observable<Movie> getMovieData(@Query("t") String name);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        db = new DataBaseHandler(this);
         EditText editText = (EditText)findViewById(R.id.editText);
-        Intent j = new Intent(this, GridActivity.class);
+
+        FloatingActionButton flab = (FloatingActionButton) findViewById(R.id.flab);
+        flab.setOnClickListener(view -> {
+            Intent j = new Intent(this, GridActivity.class);
+            startActivity(j);
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
+            Intent j = new Intent(this, GridActivity.class);
+            db = new DataBaseHandler(this);
 
-            Retrofit retrofit = new Retrofit().Builder()
+
+            Retrofit retrofit = new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl("http://omdbapi.com/")
                     .build();
+            Log.d("check", "Retrofit Initialized");
 
             MovieService movieService = retrofit.create(MovieService.class);
-            Observable<Movie> movieObservable = movieService.getMovieData(editText.getText().toString());
+            Log.d("check", "Interface Initialized");
+
+            Observable<Movie> movieObservable = movieService.getMovieData(editText.getText().toString().toLowerCase());
+            Log.d("check", "Observable Initialized");
+
             movieObservable.subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(movie -> {
-                        if (movie.getResponse().equals("true")) {
+                        Log.d("check", "Receiving Query : " + movie.getTitle());
+                        if (movie.getResponse().equals("True")) {
+                            Log.d("check", "Query found");
+
                             db.addMovie(movie);
                             startActivity(j);
                             finish();
@@ -59,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onStop(){
-        db.close();
         super.onStop();
+    }
+
+    public interface MovieService {
+        @GET("?")
+        Observable<Movie> getMovieData(@Query("t") String title);
     }
 }

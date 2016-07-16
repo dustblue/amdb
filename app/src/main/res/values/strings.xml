@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">AMDB</string>
+    <string name="name">A.M.D.B</string>
+    <string name="add_movies">Add Movies!</string>
+    <string name="add_series">Add Series!</string>
     <string name="action_add">Add</string>
     <string name="action_search">Search</string>
     <string name="action_sort">Sort</string>
     <string name="poster">poster</string>
+    <string name="enter_the_title">Enter the title</string>
 </resources>

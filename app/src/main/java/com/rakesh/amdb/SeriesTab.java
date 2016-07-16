@@ -18,28 +18,27 @@ public class SeriesTab extends Fragment {
     ArrayList<Movie> movie_data = new ArrayList<>();
     List<Movie> movies;
     GridView seriesView;
-    TextView text;
+    TextView stext;
     MovieGridAdapter adapter;
     DataBaseHandler db;
     Intent j;
-    Boolean sort;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_series,container,false);
         db = new DataBaseHandler(getContext());
         seriesView = (GridView)v.findViewById(R.id.seriesView);
-        text = (TextView)v.findViewById(R.id.seriesDefaultText);
+        stext = (TextView)v.findViewById(R.id.seriesDefaultText);
 
-        movies = db.getAllMovies(sort);
+        movies = db.getAllMovies();
         for (Movie mv : movies) {
             if (mv.getType().equals("series")) {
                 movie_data.add(mv);
             }
         }
 
-        if(movie_data == null) {
-            text.setText("Add Series");
+        if(movie_data.size() == 0) {
+            stext.setText(R.string.add_series);
         } else {
             adapter = new MovieGridAdapter(getContext(), R.layout.grid_element, movie_data);
             seriesView.setAdapter(adapter);
@@ -50,7 +49,7 @@ public class SeriesTab extends Fragment {
         seriesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                j.putExtra("imdbid", movies.get(i).getImdbID());
+                j.putExtra("imdbid", movie_data.get(i).getImdbID());
                 startActivity(j);
             }
         });

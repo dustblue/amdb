@@ -26,13 +26,6 @@ public class MovieGridAdapter extends ArrayAdapter<Movie> {
         this.context = context;
     }
 
-    public class Holder
-    {
-        TextView name;
-        TextView genre;
-        ImageView poster;
-    }
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder=new Holder();
@@ -45,7 +38,7 @@ public class MovieGridAdapter extends ArrayAdapter<Movie> {
 
         Movie movie = data.get(position);
         holder.name.setText(movie.getTitle());
-        holder.genre.setText(movie.getType());
+        holder.genre.setText(movie.getGenre());
         Picasso.with(context)
                 .load(movie.getPoster())
                 .placeholder(R.drawable.ic_default)
@@ -54,6 +47,13 @@ public class MovieGridAdapter extends ArrayAdapter<Movie> {
                 .into(holder.poster);
 
         return rowView;
+    }
+
+    public class Holder
+    {
+        TextView name;
+        TextView genre;
+        ImageView poster;
     }
 
 

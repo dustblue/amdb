@@ -2,146 +2,64 @@ package com.rakesh.amdb;
 
 public class Movie {
 
-    private String title;
-    private String year;
-    private String rated;
-    private String released;
-    private String runtime;
-    private String genre;
-    private String director;
-    private String writer;
-    private String actors;
-    private String plot;
-    private String language;
-    private String country;
-    private String awards;
-    private String poster;
-    private String metascore;
+    private String Title;
+    private String Year;
+    private String Genre;
+    private String Director;
+    private String Plot;
+    private String Poster;
     private String imdbRating;
-    private String imdbVotes;
     private String imdbID;
-    private String type;
-    private String response;
+    private String Type;
+    private String Response;
 
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.Title = title;
     }
 
     public String getYear() {
-        return year;
+        return Year;
     }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getRated() {
-        return rated;
-    }
-
-    public void setRated(String rated) {
-        this.rated = rated;
-    }
-
-    public String getReleased() {
-        return released;
-    }
-
-    public void setReleased(String released) {
-        this.released = released;
-    }
-
-    public String getRuntime() {
-        return runtime;
-    }
-
-    public void setRuntime(String runtime) {
-        this.runtime = runtime;
+    public void setYear(String Year) {
+        this.Year=Year;
     }
 
     public String getGenre() {
-        return genre;
+        return Genre;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenre(String Genre) {
+        this.Genre = Genre;
     }
 
     public String getDirector() {
-        return director;
+        return Director;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors;
+    public void setDirector(String Director) {
+        this.Director = Director;
     }
 
     public String getPlot() {
-        return plot;
+        return Plot;
     }
 
-    public void setPlot(String plot) {
-        this.plot = plot;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getAwards() {
-        return awards;
-    }
-
-    public void setAwards(String awards) {
-        this.awards = awards;
+    public void setPlot(String Plot) {
+        this.Plot = Plot;
     }
 
     public String getPoster() {
-        return poster;
+        return Poster;
     }
 
-    public void setPoster(String poster) {
-        this.poster = poster;
-    }
-
-    public String getMetascore() {
-        return metascore;
-    }
-
-    public void setMetascore(String metascore) {
-        this.metascore = metascore;
+    public void setPoster(String Poster) {
+        this.Poster = Poster;
     }
 
     public String getImdbRating() {
@@ -150,14 +68,6 @@ public class Movie {
 
     public void setImdbRating(String imdbRating) {
         this.imdbRating = imdbRating;
-    }
-
-    public String getImdbVotes() {
-        return imdbVotes;
-    }
-
-    public void setImdbVotes(String imdbVotes) {
-        this.imdbVotes = imdbVotes;
     }
 
     public String getImdbID() {
@@ -169,19 +79,19 @@ public class Movie {
     }
 
     public String getType() {
-        return type;
+        return Type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(String Type) {
+        this.Type = Type;
     }
 
     public String getResponse() {
-        return response;
+        return Response;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public void setResponse(String Response) {
+        this.Response = Response;
     }
 
 }
