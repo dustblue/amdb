@@ -22,7 +22,6 @@ public class MoviesTab extends Fragment {
     MovieGridAdapter adapter;
     DataBaseHandler db;
     Intent j;
-    Boolean sort;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,7 +30,8 @@ public class MoviesTab extends Fragment {
         moviesView = (GridView)v.findViewById(R.id.moviesView);
         text = (TextView)v.findViewById(R.id.moviesDefaultText);
 
-        movies = db.getAllMovies();
+        GridActivity gridActivity = (GridActivity) getActivity();
+        movies = db.getAllMovies(gridActivity.ifSort());
         for (Movie mv : movies) {
             if (mv.getType().equals("movie")) {
                 movie_data.add(mv);
@@ -50,7 +50,7 @@ public class MoviesTab extends Fragment {
         moviesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                j.putExtra("imdbid", movies.get(i).getImdbID());
+                j.putExtra("imdbID", movie_data.get(i).getImdbID());
                 startActivity(j);
             }
         });

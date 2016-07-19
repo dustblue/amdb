@@ -18,7 +18,7 @@ public class Detailed extends AppCompatActivity {
         setContentView(R.layout.activity_detailed);
         db = new DataBaseHandler(this);
         Bundle extras = getIntent().getExtras();
-        String id = extras.getString("imdbid");
+        String id = extras.getString("imdbID");
         Movie m = db.getMovie(id);
 
         ImageView poster = (ImageView) findViewById(R.id.imageView);
@@ -42,13 +42,13 @@ public class Detailed extends AppCompatActivity {
         genre.setText(m.getGenre());
 
         TextView director = (TextView) findViewById(R.id.director);
-        director.setText("Directed by " + m.getDirector());
+        director.setText("Directed by, " + m.getDirector());
 
         TextView rating = (TextView) findViewById(R.id.rating);
         rating.setText("IMDB Rating: " + m.getImdbRating());
 
-        FloatingActionButton fabx = (FloatingActionButton) findViewById(R.id.fabx);
-        fabx.setOnClickListener(view -> {
+        FloatingActionButton fab_del = (FloatingActionButton) findViewById(R.id.fabx);
+        fab_del.setOnClickListener(view -> {
             db.delMovie(m);
             Intent k = new Intent(this, GridActivity.class);
             startActivity(k);
@@ -58,7 +58,6 @@ public class Detailed extends AppCompatActivity {
     @Override
     public void onStop(){
         db.close();
-        finish();
         super.onStop();
     }
 }

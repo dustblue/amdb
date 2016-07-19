@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,30 +36,22 @@ public class MainActivity extends AppCompatActivity {
             Intent j = new Intent(this, GridActivity.class);
             db = new DataBaseHandler(this);
 
-
             Retrofit retrofit = new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl("http://omdbapi.com/")
                     .build();
-            Log.d("check", "Retrofit Initialized");
 
             MovieService movieService = retrofit.create(MovieService.class);
-            Log.d("check", "Interface Initialized");
 
             Observable<Movie> movieObservable = movieService.getMovieData(editText.getText().toString().toLowerCase());
-            Log.d("check", "Observable Initialized");
 
             movieObservable.subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(movie -> {
-                        Log.d("check", "Receiving Query : " + movie.getTitle());
                         if (movie.getResponse().equals("True")) {
-                            Log.d("check", "Query found");
-
                             db.addMovie(movie);
                             startActivity(j);
-                            finish();
                         }
                         else Toast.makeText(MainActivity.this, "Not Found, Try Again", Toast.LENGTH_SHORT).show();
                     });
@@ -70,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onStop(){
+        db.close();
         super.onStop();
     }
 

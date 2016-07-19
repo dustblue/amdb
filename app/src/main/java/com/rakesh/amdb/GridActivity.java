@@ -7,12 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 
 public class GridActivity extends AppCompatActivity {
     final int numberOfTabs =2;
-    public boolean sort;
+    public boolean sort = false;
     Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter adapter;
@@ -22,6 +21,7 @@ public class GridActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -47,22 +47,28 @@ public class GridActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getOrder()) {
             case 100 : {
-                Toast.makeText(GridActivity.this, "Yet to implement search", Toast.LENGTH_SHORT).show();
+                m = new Intent(this, MainActivity.class);
+                startActivity(m);
                 break;
             }
             case 200 : {
                 m = new Intent(this, MainActivity.class);
                 startActivity(m);
-                finish();
                 break;
             }
             case 300 : {
+
                 m = new Intent(this, GridActivity.class);
+                sort = !sort;
                 startActivity(m);
-                finish();
                 break;
             }
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public Boolean ifSort(){
+        return sort;
+    }
 }
+

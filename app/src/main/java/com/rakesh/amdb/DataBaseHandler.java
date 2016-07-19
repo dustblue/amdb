@@ -98,14 +98,15 @@ public class DataBaseHandler extends SQLiteOpenHelper
             movie.setResponse(cursor.getString(8));
             movie.setPoster(cursor.getString(9));
         }
-        cursor.close();
+        if(cursor!=null)
+            cursor.close();
         return movie;
     }
 
-    public List<Movie> getAllMovies() {
+    public List<Movie> getAllMovies(Boolean sort) {
         List<Movie> movieList = new ArrayList<>();
         String selectQuery;
-        if (true) {
+        if (!sort) {
             selectQuery = "SELECT  * FROM Movies ORDER BY title";
         } else {
             selectQuery = "SELECT  * FROM Movies ORDER BY imdbRating";
@@ -130,8 +131,8 @@ public class DataBaseHandler extends SQLiteOpenHelper
                 movieList.add(movie);
             } while (cursor.moveToNext());
         }
-        db.close();
         cursor.close();
+        db.close();
         return movieList;
     }
 

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeriesTab extends Fragment {
-    ArrayList<Movie> movie_data = new ArrayList<>();
+    ArrayList<Movie> serie_data = new ArrayList<>();
     List<Movie> movies;
     GridView seriesView;
     TextView stext;
@@ -30,17 +30,18 @@ public class SeriesTab extends Fragment {
         seriesView = (GridView)v.findViewById(R.id.seriesView);
         stext = (TextView)v.findViewById(R.id.seriesDefaultText);
 
-        movies = db.getAllMovies();
+        GridActivity gridActivity = (GridActivity) getActivity();
+        movies = db.getAllMovies(gridActivity.ifSort());
         for (Movie mv : movies) {
             if (mv.getType().equals("series")) {
-                movie_data.add(mv);
+                serie_data.add(mv);
             }
         }
 
-        if(movie_data.size() == 0) {
+        if(serie_data.size() == 0) {
             stext.setText(R.string.add_series);
         } else {
-            adapter = new MovieGridAdapter(getContext(), R.layout.grid_element, movie_data);
+            adapter = new MovieGridAdapter(getContext(), R.layout.grid_element, serie_data);
             seriesView.setAdapter(adapter);
         }
 
@@ -49,7 +50,7 @@ public class SeriesTab extends Fragment {
         seriesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                j.putExtra("imdbid", movie_data.get(i).getImdbID());
+                j.putExtra("imdbID", serie_data.get(i).getImdbID());
                 startActivity(j);
             }
         });

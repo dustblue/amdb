@@ -12,17 +12,21 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".GridActivity"
+            android:launchMode="singleInstance"
             android:parentActivityName=".MainActivity">
 
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Detailed">
+        <activity android:name=".Detailed"
+                  android:launchMode="singleInstance"
+                  android:parentActivityName=".GridActivity">
 
         </activity>
     </application>
