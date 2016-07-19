@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onStop(){
-        db.close();
         super.onStop();
     }
 

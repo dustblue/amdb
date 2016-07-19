@@ -107,9 +107,9 @@ public class DataBaseHandler extends SQLiteOpenHelper
         List<Movie> movieList = new ArrayList<>();
         String selectQuery;
         if (!sort) {
-            selectQuery = "SELECT  * FROM Movies ORDER BY title";
+            selectQuery = "SELECT * FROM Movies ORDER BY Title";
         } else {
-            selectQuery = "SELECT  * FROM Movies ORDER BY imdbRating";
+            selectQuery = "SELECT * FROM Movies ORDER BY imdbRating";
         }
 
         SQLiteDatabase db = this.getWritableDatabase();

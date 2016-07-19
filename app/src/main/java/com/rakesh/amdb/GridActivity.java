@@ -49,11 +49,13 @@ public class GridActivity extends AppCompatActivity {
             case 100 : {
                 m = new Intent(this, MainActivity.class);
                 startActivity(m);
+                finish();
                 break;
             }
             case 200 : {
                 m = new Intent(this, MainActivity.class);
                 startActivity(m);
+                finish();
                 break;
             }
             case 300 : {
@@ -61,6 +63,7 @@ public class GridActivity extends AppCompatActivity {
                 m = new Intent(this, GridActivity.class);
                 sort = !sort;
                 startActivity(m);
+                finish();
                 break;
             }
         }
