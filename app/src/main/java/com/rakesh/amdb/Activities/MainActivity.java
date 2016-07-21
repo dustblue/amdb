@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rakesh.amdb.DataBaseManagement.DataBaseHandler;
-import com.rakesh.amdb.POJOs.Movie;
+import com.rakesh.amdb.Utils.Movie;
 import com.rakesh.amdb.Interfaces.MovieService;
 import com.rakesh.amdb.R;
 

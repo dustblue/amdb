@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.rakesh.amdb.POJOs.Movie;
+import com.rakesh.amdb.Utils.Movie;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.rakesh.amdb.Activities.Detailed;
 import com.rakesh.amdb.Activities.GridActivity;
 import com.rakesh.amdb.DataBaseManagement.DataBaseHandler;
-import com.rakesh.amdb.POJOs.Movie;
+import com.rakesh.amdb.Utils.Movie;
 import com.rakesh.amdb.R;
 
 import java.util.ArrayList;

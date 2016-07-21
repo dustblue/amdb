@@ -9,11 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rakesh.amdb.DataBaseManagement.DataBaseHandler;
-import com.rakesh.amdb.POJOs.Movie;
+import com.rakesh.amdb.Utils.Movie;
 import com.rakesh.amdb.R;
 import com.rakesh.amdb.Interfaces.TrailerService;
 import com.rakesh.amdb.Config.YouTubeConfig;
-import com.rakesh.amdb.POJOs.YouTubeSearch;
+import com.rakesh.amdb.Utils.YouTubeSearch;
 import com.squareup.picasso.Picasso;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

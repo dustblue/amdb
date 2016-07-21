@@ -1,4 +1,4 @@
-package com.rakesh.amdb.POJOs;
+package com.rakesh.amdb.Utils;
 
 import com.google.gson.annotations.SerializedName;
 

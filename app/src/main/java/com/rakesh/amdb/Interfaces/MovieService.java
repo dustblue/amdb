@@ -1,6 +1,6 @@
 package com.rakesh.amdb.Interfaces;
 
-import com.rakesh.amdb.POJOs.Movie;
+import com.rakesh.amdb.Utils.Movie;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

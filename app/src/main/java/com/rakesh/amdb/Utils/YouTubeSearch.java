@@ -1,5 +1,5 @@
 
-package com.rakesh.amdb.POJOs;
+package com.rakesh.amdb.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

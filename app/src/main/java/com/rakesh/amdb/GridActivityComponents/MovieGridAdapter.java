@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rakesh.amdb.POJOs.Movie;
+import com.rakesh.amdb.Utils.Movie;
 import com.rakesh.amdb.R;
 import com.squareup.picasso.Picasso;
 
