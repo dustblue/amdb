@@ -1,4 +1,4 @@
-package com.rakesh.amdb;
+package com.rakesh.amdb.GridActivityComponents;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.rakesh.amdb.R;
 
 
 public class SlidingTabLayout extends HorizontalScrollView {

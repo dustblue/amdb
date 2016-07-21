@@ -1,4 +1,4 @@
-package com.rakesh.amdb;
+package com.rakesh.amdb.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.rakesh.amdb.R;
+import com.rakesh.amdb.GridActivityComponents.SlidingTabLayout;
+import com.rakesh.amdb.GridActivityComponents.ViewPagerAdapter;
 
 
 public class GridActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.rakesh.amdb;
+package com.rakesh.amdb.GridActivityComponents;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rakesh.amdb.POJOs.Movie;
+import com.rakesh.amdb.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

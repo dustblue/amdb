@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tmools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rakesh.amdb.GridActivity">
+    tools:context="com.rakesh.amdb.Activities.GridActivity">
 
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar">
     </include>
 
-    <com.rakesh.amdb.SlidingTabLayout
+    <com.rakesh.amdb.GridActivityComponents.SlidingTabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

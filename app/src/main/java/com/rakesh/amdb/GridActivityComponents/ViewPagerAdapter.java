@@ -1,4 +1,4 @@
-package com.rakesh.amdb;
+package com.rakesh.amdb.GridActivityComponents;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

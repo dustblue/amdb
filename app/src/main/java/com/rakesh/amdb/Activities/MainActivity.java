@@ -1,4 +1,4 @@
-package com.rakesh.amdb;
+package com.rakesh.amdb.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.rakesh.amdb.DataBaseManagement.DataBaseHandler;
+import com.rakesh.amdb.POJOs.Movie;
+import com.rakesh.amdb.Interfaces.MovieService;
+import com.rakesh.amdb.R;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -64,8 +67,5 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    public interface MovieService {
-        @GET("?")
-        Observable<Movie> getMovieData(@Query("t") String title);
-    }
 }
+

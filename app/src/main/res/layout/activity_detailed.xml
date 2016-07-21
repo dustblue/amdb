@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.rakesh.amdb.Detailed">
+    tools:context=".Activities.Detailed">
 
     <ImageView
         android:id="@+id/imageView"
@@ -87,12 +87,21 @@
         android:textStyle="italic"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabx"
+        android:id="@+id/fab_del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_delete"
+        app:fabSize="normal" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fab_trailer"
+        android:src="@drawable/ic_trailer"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         app:fabSize="normal"
         />
 

@@ -7,5 +7,6 @@
     <string name="action_search">Search</string>
     <string name="action_sort">Sort</string>
     <string name="poster">poster</string>
+    <string name="player_error">error</string>
     <string name="enter_the_title">Enter the title</string>
 </resources>

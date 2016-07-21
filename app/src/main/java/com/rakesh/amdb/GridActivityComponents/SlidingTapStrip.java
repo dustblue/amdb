@@ -1,4 +1,4 @@
-package com.rakesh.amdb;
+package com.rakesh.amdb.GridActivityComponents;
 
 import android.content.Context;
 import android.graphics.Canvas;

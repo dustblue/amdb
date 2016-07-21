@@ -1,4 +1,4 @@
-package com.rakesh.amdb;
+package com.rakesh.amdb.DataBaseManagement;
 
 
 import android.content.ContentValues;
@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.rakesh.amdb.POJOs.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +79,7 @@ public class DataBaseHandler extends SQLiteOpenHelper
          db.delete(TABLE_MOVIES, KEY_IMDBID + " = ?", new String[] { String.valueOf(movie.getImdbID()) });
      }
 
-    Movie getMovie(String id) {
+    public Movie getMovie(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_MOVIES, new String[] { KEY_IMDBID,
