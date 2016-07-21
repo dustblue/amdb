@@ -60,7 +60,7 @@ public class DataBaseHandler extends SQLiteOpenHelper
 
         ContentValues values = new ContentValues();
         values.put(KEY_TYPE, movie.getType());
-        values.put(KEY_IMDBID, movie.getImdbID());
+        values.put(KEY_IMDBID, movie.getImdbId());
         values.put(KEY_TITLE, movie.getTitle());
         values.put(KEY_YEAR, movie.getYear());
         values.put(KEY_RESPONSE, movie.getResponse());
@@ -76,7 +76,7 @@ public class DataBaseHandler extends SQLiteOpenHelper
 
     public void delMovie(Movie movie) {
          SQLiteDatabase db = this.getWritableDatabase();
-         db.delete(TABLE_MOVIES, KEY_IMDBID + " = ?", new String[] { String.valueOf(movie.getImdbID()) });
+         db.delete(TABLE_MOVIES, KEY_IMDBID + " = ?", new String[] { String.valueOf(movie.getImdbId()) });
      }
 
     public Movie getMovie(String id) {
@@ -89,7 +89,7 @@ public class DataBaseHandler extends SQLiteOpenHelper
         if (cursor != null) {
             cursor.moveToFirst();
             Log.d("check", cursor.getString(1));
-            movie.setImdbID(cursor.getString(0));
+            movie.setImdbId(cursor.getString(0));
             movie.setTitle(cursor.getString(1));
             movie.setType(cursor.getString(2));
             movie.setYear(cursor.getString(3));
@@ -119,7 +119,7 @@ public class DataBaseHandler extends SQLiteOpenHelper
         if (cursor.moveToFirst()) {
             do {
                 Movie movie = new Movie();
-                movie.setImdbID(cursor.getString(0));
+                movie.setImdbId(cursor.getString(0));
                 movie.setTitle(cursor.getString(1));
                 movie.setType(cursor.getString(2));
                 movie.setYear(cursor.getString(3));

@@ -10,7 +10,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import com.rakesh.amdb.R;
 import com.rakesh.amdb.Config.YouTubeConfig;
 
-public class TrailerView extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
+public class TrailerPlayer extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     String Url;
     private YouTubePlayerView youTubeView;
     private static final int RECOVERY_REQUEST = 1;

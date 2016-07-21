@@ -1,5 +1,6 @@
 package com.rakesh.amdb.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +26,7 @@ import rx.schedulers.Schedulers;
 public class Detailed extends AppCompatActivity {
     DataBaseHandler db;
     Observable<YouTubeSearch> trailerObservable;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,13 @@ public class Detailed extends AppCompatActivity {
         FloatingActionButton fab_trailer = (FloatingActionButton) findViewById(R.id.fab_trailer);
         fab_trailer.setOnClickListener(view -> {
 
-            Intent l = new Intent(Detailed.this, TrailerView.class);
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Fetching Trailer");
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setIndeterminate(true);
+            progressDialog.show();
+
+            Intent l = new Intent(Detailed.this, TrailerPlayer.class);
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -88,6 +96,7 @@ public class Detailed extends AppCompatActivity {
                     .subscribe(youTubeSearch -> {
                         if (youTubeSearch.getItems().get(0).getId().getVideoId()!= null) {
                             l.putExtra("src" , youTubeSearch.getItems().get(0).getId().getVideoId());
+                            progressDialog.dismiss();
                             startActivity(l);
                         }
                         else Toast.makeText(Detailed.this, "Trailer Not found", Toast.LENGTH_SHORT);

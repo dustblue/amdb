@@ -56,7 +56,7 @@ public class SeriesTab extends Fragment {
         seriesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                j.putExtra("imdbID", serie_data.get(i).getImdbID());
+                j.putExtra("imdbID", serie_data.get(i).getImdbId());
                 startActivity(j);
             }
         });

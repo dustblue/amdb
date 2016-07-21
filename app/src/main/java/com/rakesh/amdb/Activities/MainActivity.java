@@ -1,9 +1,10 @@
 package com.rakesh.amdb.Activities;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,8 +20,11 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     DataBaseHandler db;
+    private ProgressDialog progress;
+    Retrofit retrofit;
+    Observable<Movie> movieObservable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +40,17 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
+
+            progress=new ProgressDialog(this);
+            progress.setMessage("Fetching Query");
+            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progress.setIndeterminate(true);
+            progress.show();
+
             Intent j = new Intent(this, GridActivity.class);
             db = new DataBaseHandler(this);
 
-            Retrofit retrofit = new Retrofit.Builder()
+            retrofit = new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl("http://omdbapi.com/")
@@ -47,13 +58,14 @@ public class MainActivity extends AppCompatActivity {
 
             MovieService movieService = retrofit.create(MovieService.class);
 
-            Observable<Movie> movieObservable = movieService.getMovieData(editText.getText().toString().toLowerCase());
+            movieObservable = movieService.getMovieData(editText.getText().toString().toLowerCase());
 
             movieObservable.subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(movie -> {
                         if (movie.getResponse().equals("True")) {
                             db.addMovie(movie);
+                            progress.dismiss();
                             startActivity(j);
                         }
                         else Toast.makeText(MainActivity.this, "Not Found, Try Again", Toast.LENGTH_SHORT).show();

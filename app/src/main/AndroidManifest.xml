@@ -27,7 +27,7 @@
             android:launchMode="singleInstance"
             android:parentActivityName=".Activities.GridActivity"/>
         <activity
-            android:name=".Activities.TrailerView"
+            android:name=".Activities.TrailerPlayer"
             android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:parentActivityName=".Activities.Detailed">

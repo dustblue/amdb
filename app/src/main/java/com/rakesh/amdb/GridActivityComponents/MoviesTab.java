@@ -56,7 +56,7 @@ public class MoviesTab extends Fragment {
         moviesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                j.putExtra("imdbID", movie_data.get(i).getImdbID());
+                j.putExtra("imdbID", movie_data.get(i).getImdbId());
                 startActivity(j);
             }
         });

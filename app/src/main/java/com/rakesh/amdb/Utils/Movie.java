@@ -24,7 +24,8 @@ public class Movie {
 
     private String imdbRating;
 
-    private String imdbID;
+    @SerializedName("imdbID")
+    private String imdbId;
 
     @SerializedName("Type")
     private String type;
@@ -88,12 +89,12 @@ public class Movie {
         this.imdbRating = imdbRating;
     }
 
-    public String getImdbID() {
-        return imdbID;
+    public String getImdbId() {
+        return imdbId;
     }
 
-    public void setImdbID(String imdbID) {
-        this.imdbID = imdbID;
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
     }
 
     public String getType() {
