@@ -14,14 +14,13 @@ import com.rakesh.amdb.GridActivityComponents.ViewPagerAdapter;
 
 
 public class GridActivity extends AppCompatActivity {
-    final int numberOfTabs =2;
-    public boolean sort = false;
+    final int numberOfTabs = 2;
+    public static boolean sort = false;
     Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence titles[]={"Movies","Series"};
-    Intent m;
+    CharSequence titles[] = {"Movies", "Series"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class GridActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), titles, numberOfTabs);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, numberOfTabs);
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
 
@@ -49,33 +48,27 @@ public class GridActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getOrder()) {
-            case 100 : {
-                m = new Intent(this, MainActivity.class);
+        Intent m = new Intent(this, MainActivity.class);
+        switch (item.getOrder()) {
+            case 100: {
                 startActivity(m);
                 finish();
                 break;
             }
-            case 200 : {
-                m = new Intent(this, MainActivity.class);
+            case 200: {
                 startActivity(m);
                 finish();
                 break;
             }
-            case 300 : {
-
+            case 300: {
                 m = new Intent(this, GridActivity.class);
                 sort = !sort;
-                startActivity(m);
+
                 finish();
                 break;
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public Boolean ifSort(){
-        return sort;
     }
 }
 
