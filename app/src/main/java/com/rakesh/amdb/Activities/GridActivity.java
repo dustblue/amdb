@@ -63,7 +63,7 @@ public class GridActivity extends AppCompatActivity {
             case 300: {
                 m = new Intent(this, GridActivity.class);
                 sort = !sort;
-
+                startActivity(m);
                 finish();
                 break;
             }
